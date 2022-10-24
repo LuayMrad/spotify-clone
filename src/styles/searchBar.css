@@ -1,0 +1,18 @@
+.input-field {
+  padding: 15px;
+}
+.input-style {
+  padding-left: 100px;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+.button {
+  background-color: black;
+  color: #1db954;
+  border-radius: 10px;
+  font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  border-radius: 3px;
+  cursor: pointer;
+}

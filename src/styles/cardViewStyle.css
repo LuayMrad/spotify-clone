@@ -1,0 +1,20 @@
+.card {
+  background-color: #191414;
+  height: 480px;
+}
+.card-title {
+  color: #1db954;
+}
+.card-text {
+  color: #1db954;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+
+.card-image {
+  height: 280px;
+}

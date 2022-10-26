@@ -1,15 +1,20 @@
-const Constants = {
-  BASE_URL: "https://api.spotify.com/v1",
+const Constants = { 
 
-  AUTH_ENDPOINT: "https://accounts.spotify.com/authorize",
+  BASE_URL: 'https://api.spotify.com/v1', 
 
-  REDIRECT_URI: "http://localhost:3000/",
+  AUTH_ENDPOINT : "https://accounts.spotify.com/authorize",
 
-  CLIENT_ID: "a46d7a82370d4a9fa5a39253807d041e",
+  TOKEN_ENDPOINT : 'https://accounts.spotify.com/api/token', 
+  
+  REDIRECT_URI : "http://localhost:3000/",
 
-  TOKEN_KEY: "token",
+  CLIENT_ID : 'a46d7a82370d4a9fa5a39253807d041e',
 
-  DEFAULT_REROUTE_LOCATION: "/login",
-};
+  CLIENT_SECRET : '1275b641ebfb48ca8da9f3c8d9a2afe9',
 
-export default Constants;
+  TOKEN_KEY : 'token', 
+
+  DEFAULT_REROUTE_LOCATION : '/login'
+}
+
+export default Constants

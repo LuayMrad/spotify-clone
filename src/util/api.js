@@ -9,9 +9,9 @@ const Api = {
         "Content-Type": "application/json",
       },
     });
-    // if (result.statusCode!==200){
-    //     console.log(await result.text());
-    // }
+     if (result.statusCode!==200){
+         console.log(await result.text());
+     }
     let jsonResult = await result.json();
 
     return {

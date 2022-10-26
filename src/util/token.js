@@ -1,25 +1,69 @@
-import Constants from "./constants";
+import Constants from "./constants"
+import { Buffer } from 'buffer';
 
 const Token = {
-  setToken: () => {
-    const urlHash = window.location.hash.substring(1);
 
-    const parsedHash = new URLSearchParams(urlHash);
+    setToken : async () => {
+        
+        const parsedQueries = new URLSearchParams(window.location.search)
 
-    const token = parsedHash.get("access_token");
+        if(parsedQueries.get('code') === null){
+          window.location = '/login'
+        }
 
-    if (token === null || token === undefined) {
-      if (localStorage.getItem(Constants.TOKEN_KEY) === null) {
-        window.location = Constants.DEFAULT_REROUTE_LOCATION;
-      }
+        if(parsedQueries.get('error') !== null){
+            console.error('User has not accepted to login to spotify')
+            return 
+        }
+
+        const tokenRequestCode = parsedQueries.get('code')
+
+        let formData = new URLSearchParams();
+
+    
+        formData.append("code", tokenRequestCode)
+
+        formData.append("redirect_uri", Constants.REDIRECT_URI)
+
+        formData.append('grant_type', "authorization_code")
+
+
+        let headers = {
+
+            'Content-Type' : 'application/x-www-form-urlencoded',
+
+            'Authorization' : 'Basic ' + Buffer.from(Constants.CLIENT_ID + ':' + Constants.CLIENT_SECRET).toString('base64')
+        
+        }
+
+        let data = await fetch(Constants.TOKEN_ENDPOINT, {
+            method : 'POST',
+            body : formData,
+            headers : headers
+        })
+
+
+        if(data.status !== 200)
+        {
+            console.error(await data.text())
+            return
+        }
+
+        let token = await data.json()
+
+        localStorage.setItem(Constants.TOKEN_KEY, JSON.stringify(token))
+
+        window.location = '/search'
+    },
+
+    fetchToken : () => {
+
+        var token = JSON.parse(localStorage.getItem(Constants.TOKEN_KEY))
+        
+        // we can implement the refresh token logic here
+    
+       return token.access_token 
     }
+}
 
-    localStorage.setItem(Constants.TOKEN_KEY, token);
-  },
-
-  fetchToken: () => {
-    return localStorage.getItem(Constants.TOKEN_KEY);
-  },
-};
-
-export default Token;
+export default Token

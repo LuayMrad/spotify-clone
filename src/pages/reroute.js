@@ -1,14 +1,20 @@
-import { useEffect } from "react";
-import Token from "../util/token";
+import { useEffect } from "react"
+import Token from "../util/token"
+
 
 const ReRoute = () => {
-  useEffect(() => {
-    Token.setToken();
 
-    window.location = "/search";
-  }, []);
+    useEffect(() => {
+     
+     Token.setToken()
 
-  return <div>Re-routing you to search</div>;
-};
+     //   window.location = '/search'
 
-export default ReRoute;
+    }, [])
+
+    return(
+        <div>Re-routing you to search</div>
+    )
+}
+
+export default ReRoute
